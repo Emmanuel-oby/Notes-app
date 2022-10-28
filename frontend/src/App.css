@@ -1,5 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
+/* Body */
+.body {
+  display: flex;
+  gap: 20%;
+}
+
+/* Create-note */
+form.create-note {
+  position: relative;
+  width: 480px;
+  margin: 30px auto 20px auto;
+  background: #fff;
+  padding: 15px;
+  border-radius: 7px;
+  box-shadow: 0 1px 5px rgb(138, 137, 137);
+}
+form.create-note input,
+form.create-note textarea {
+  width: 100%;
+  border: none;
+  padding: 4px;
+  outline: none;
+  font-size: 1.2em;
+  font-family: inherit;
+  resize: none;
+}
+form.create-note button {
+  position: absolute;
+  right: 18px;
+  bottom: -18px;
+  background: #f5ba13;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  outline: none;
+}
+
 /* Header*/
 
 .header {
@@ -25,7 +66,11 @@
 nav {
   background-color: rgb(236, 180, 76);
   max-width: 400px;
-  border-radius: 5px;
+  border-radius: 10px;
+}
+
+.input-field input[type=search]:focus:not(.browser-default){
+  border-radius: 10px;
 }
 
 span {
@@ -35,29 +80,46 @@ span {
   margin-right: 8px;
 }
 
-/* Menu */
+/* sidebar */
 
-.menu{
-  background-color: bisque;
-  max-width: 20%;
+.sidebar{
   border-top: 4px solid #fff;
   height: 70vh;
   border-radius: 0 0 30px;
+  max-width: fit-content;
+  background-color: #fff;
+  box-shadow: 1px 0px #888888
 }
-.menu span {
+
+.sidebar > span {
+  max-width: 0%;
+  padding-left: 20px;
   display: flex;
   align-items: center;
   border-radius: 0 15px 15px 0;
-}
-.menu > span{
   margin-top: 10px;
-  padding-bottom: 10px;
+}
+
+.sidebar > span:hover {
+  max-width: 100%;
+}
+.sidebar span span {
+  border-radius: 50%;
+  padding: 10px;
+  width: 50px;
+  transition: width 100ms, border-radius 50ms;
+  transition-delay: 0.225s;
+}
+
+.sidebar span span:hover {
+  background-color: bisque;
+  width: 200px;
+  border-radius: 0 15px 15px 0;
 }
 span h6 {
   color: #000;
   margin-left: 0px;
+  display: none;
 }
 
-.menu span:hover {
-  background-color: #fff;
-}
+

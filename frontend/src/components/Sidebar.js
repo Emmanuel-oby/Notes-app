@@ -1,9 +1,12 @@
 import React from "react";
 
-function Menu() {
+function Sidebar() {
+	function handleClick() {
+       
+	}
 	return (
-		<div className="menu">
-			<span>
+		<div className="sidebar">
+			<span onClick={handleClick}>
 				<span class="material-icons-outlined">note</span>
 				<h6>Notes</h6>
 			</span>
@@ -23,4 +26,4 @@ function Menu() {
 	);
 }
 
-export default Menu;
+export default Sidebar;
