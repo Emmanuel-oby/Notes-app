@@ -73,6 +73,10 @@ nav {
   border-radius: 10px;
 }
 
+.input-field input[type=search]::placeholder {
+  color: #fff;
+}
+
 span {
   color: rgb(235, 169, 48);
   font-size: 2rem !important;
