@@ -1,12 +1,17 @@
-import './App.css';
-import Body from './components/Body';
-import Header from './components/Header';
+import "./App.scss";
+import { Route, Routes } from "react-router-dom";
+import SignIn from "./components/auth/SignIn";
+import LogIn from "./components/auth/LogIn";
 
 function App() {
   return (
     <>
-    <Header/>
-    <Body/>
+      {/* <Header/>
+    <Body/> */}
+      <Routes>
+        <Route path="/" element={<SignIn />} />
+        <Route path="/login" element={<LogIn />} />
+      </Routes>
     </>
   );
 }
