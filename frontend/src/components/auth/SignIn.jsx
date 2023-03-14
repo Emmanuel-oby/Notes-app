@@ -1,18 +1,25 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+import { showRedMessage } from "../../redux/features/toast/toastSlice";
+import Toast from "../toast/Toast";
 import "./auth.scss";
 import leftImage from "../../assets/Saly-3.png";
 import rightImage from "../../assets/Saly-2.png";
 
 export default function SignIn() {
-  const [state, setState] = useState({
+  const { DrawerScreen } = useSelector((state) => state.side);
+  const dispatch = useDispatch();
+
+  const [details, setDetails] = useState({
+    username: "",
     email: "",
     password: "",
   });
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setState((prevProps) => ({
+    setDetails((prevProps) => ({
       ...prevProps,
       [name]: value,
     }));
@@ -20,7 +27,23 @@ export default function SignIn() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(state);
+    // console.log(details);
+    if(!/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/.test(details.email)){
+      <Toast/>
+      return
+    }
+    fetch("/api/users", {
+      method:"post",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        name: details.username,
+        email: details.email,
+        password: details.password
+      })
+    }).then(res => res.json())
+    .then(data => console.log(data))
   };
 
   return (
@@ -54,7 +77,7 @@ export default function SignIn() {
                 type="text"
                 placeholder="Username"
                 name="username"
-                value={state.username}
+                value={details.username}
                 onChange={handleInputChange}
               />
             </div>
@@ -64,7 +87,7 @@ export default function SignIn() {
                 type="text"
                 placeholder="Email"
                 name="email"
-                value={state.email}
+                value={details.email}
                 onChange={handleInputChange}
               />
             </div>
@@ -74,7 +97,7 @@ export default function SignIn() {
                 type="password"               
                 placeholder="Password"
                 name="password"
-                value={state.password}
+                value={details.password}
                 onChange={handleInputChange}
               />
             </div>
