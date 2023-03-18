@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {BsFillCheckCircleFill, BsFillExclamationCircleFill, BsFillInfoCircleFill} from 'react-icons/bs'
 
 const initialState = {
   open: false,
@@ -15,17 +14,20 @@ const toastSlice = createSlice({
     showGreenMessage(state, action) {
       state.open = true;
       state.message = action.payload;
-      state.color = "#5cb85c";
+      state.color = "#12cc53";
+      state.icon = "bi:check-circle-fill";
     },
     showMessage(state, action) {
       state.open = true;
       state.message = action.payload;
-      state.color = "#5bc0de";
+      state.color = "#0285f7";
+      state.icon = "bi:info-circle-fill";
     },
     showRedMessage(state, action) {
       state.open = true;
       state.message = action.payload;
-      state.color = "#d9534f";
+      state.color = "#fc3503";
+      state.icon = "bi:exclamation-circle-fill";
     },
     clearMessage(state, action) {
       state.message = "";
@@ -33,6 +35,6 @@ const toastSlice = createSlice({
     },
   },
 });
-export const { ShowMessage, ClearMessage, ShowRedMessage, ShowGreenMessage } =
+export const { showMessage, clearMessage, showRedMessage, showGreenMessage } =
   toastSlice.actions;
 export default toastSlice.reducer;

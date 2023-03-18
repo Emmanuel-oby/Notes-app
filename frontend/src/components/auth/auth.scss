@@ -1,5 +1,5 @@
 a{
-    color: #e48700;
+    color: #9868D6;
 }
 .background {
   display: flex;
@@ -8,18 +8,35 @@ a{
   margin: 0;
   padding: 0;
   .first-half {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50%;
-    background-color: #ecbc76;
+    background-color: #9868D6;
+    & img {
+      position: absolute;
+      bottom: 20%;
+      left: 20%;
+      height: 35%;
+      width: 35%;
+    }
+    
   }
   .second-half {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50%;
-    background-color: #e5e5e5;
+    background-color: #e2d3f6;
+    & img {
+      position: absolute;
+      top: 20%;
+      right: 20%;
+      height: 35%;
+      width: 50%;
+    }
   }
   .container {
     position: absolute;
@@ -30,7 +47,7 @@ a{
     top: 0;
     bottom: 0;
     width: 30%;
-    height: 80%;
+    height: fit-content;
     margin: auto;
     .container-inner {
       padding: 30px;
@@ -41,11 +58,10 @@ a{
       form {
         .form-control {
           display: flex;
+          margin-bottom: 25px;
           gap: 10px;
           flex-direction: column;
           font-size: 16px;
-          & label{
-          }
           & input {
             border: 1px solid gray;
             border-radius: 10px;
@@ -54,12 +70,14 @@ a{
           }
           & button {
             width: 100%;
-            background-color: #e48700;
+            cursor: pointer;
+            background-color: #9868D6;
             color: #ffffff;
+            font-size: 18px;
             border: none;
             border-radius: 10px;
             outline: none;
-            padding: 10px;
+            padding: 12px;
           }
         }
       }

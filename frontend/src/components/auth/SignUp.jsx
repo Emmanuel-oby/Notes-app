@@ -1,15 +1,16 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux'
-import { showRedMessage } from "../../redux/features/toast/toastSlice";
+import React, {useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux'
+import { showRedMessage, showGreenMessage } from "../../redux/features/toast/toastSlice";
 import Toast from "../toast/Toast";
 import "./auth.scss";
-import leftImage from "../../assets/Saly-3.png";
-import rightImage from "../../assets/Saly-2.png";
+import leftImage from "../../assets/note-man.png";
+import rightImage from "../../assets/Group 1.png";
 
-export default function SignIn() {
-  const { DrawerScreen } = useSelector((state) => state.side);
+export default function SignUp() {
+  const { open } = useSelector((state) => state.toast);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [details, setDetails] = useState({
     username: "",
@@ -29,7 +30,7 @@ export default function SignIn() {
     event.preventDefault();
     // console.log(details);
     if(!/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/.test(details.email)){
-      <Toast/>
+      dispatch(showRedMessage("Email format is not correct"));
       return
     }
     fetch("/api/users", {
@@ -43,11 +44,24 @@ export default function SignIn() {
         password: details.password
       })
     }).then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {
+      if(data.message){
+        console.log(data);
+        dispatch(showRedMessage(data.message));
+      } else {
+        dispatch(showGreenMessage("successfully signed up"))
+        navigate("/login")
+      }
+    })
   };
+
 
   return (
     <div className="background">
+      {
+        open && (<Toast/>)
+      }
+      
       <div className="first-half">
         <img src={leftImage} alt="leftImage" />
       </div>
@@ -102,7 +116,6 @@ export default function SignIn() {
               />
             </div>
             <div className="form-control">
-              <label></label>
               <button type="submit">Sign up</button>
             </div>
           </form>

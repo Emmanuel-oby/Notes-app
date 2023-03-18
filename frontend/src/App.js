@@ -1,6 +1,7 @@
 import "./App.scss";
 import { Route, Routes } from "react-router-dom";
-import SignIn from "./components/auth/SignIn";
+import Home from "./components/home/Home";
+import SignUp from "./components/auth/SignUp";
 import LogIn from "./components/auth/LogIn";
 
 function App() {
@@ -9,7 +10,8 @@ function App() {
       {/* <Header/>
     <Body/> */}
       <Routes>
-        <Route path="/" element={<SignIn />} />
+      <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<LogIn />} />
       </Routes>
     </>
