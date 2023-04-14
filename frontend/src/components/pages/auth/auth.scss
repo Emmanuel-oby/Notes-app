@@ -1,10 +1,12 @@
+@use '../../../App';
+
 a{
-    color: #9868D6;
+    color: App.$primary-color;
 }
 .background {
   display: flex;
   position: relative;
-  height: 100vh;
+  height: calc(100vh - 65px);
   margin: 0;
   padding: 0;
   .first-half {
@@ -13,13 +15,17 @@ a{
     justify-content: center;
     align-items: center;
     width: 50%;
-    background-color: #9868D6;
-    & img {
+    background-color: App.$primary-color;
+    .img-cont {
       position: absolute;
       bottom: 20%;
       left: 20%;
       height: 35%;
       width: 35%;
+      img{
+        height: 100%;
+        width: 100%;
+      }
     }
     
   }
@@ -30,12 +36,16 @@ a{
     align-items: center;
     width: 50%;
     background-color: #e2d3f6;
-    & img {
+    .img-cont {
       position: absolute;
       top: 20%;
       right: 20%;
       height: 35%;
       width: 50%;
+      img{
+        height: 100%;
+        width: 100%;
+      }
     }
   }
   .container {
@@ -71,7 +81,7 @@ a{
           & button {
             width: 100%;
             cursor: pointer;
-            background-color: #9868D6;
+            background-color: App.$primary-color;
             color: #ffffff;
             font-size: 18px;
             border: none;

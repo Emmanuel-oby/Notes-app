@@ -14,7 +14,7 @@ const Toast = () => {
     const autodel = setTimeout(() => {
       dispatch(clearMessage())
       console.log("panda");
-    }, 8000);
+    }, 5000);
   
     return () => {
       clearTimeout(autodel)

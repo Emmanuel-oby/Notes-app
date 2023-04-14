@@ -1,19 +1,16 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux'
-import { showRedMessage, showGreenMessage } from "../../redux/features/toast/toastSlice";
-import Toast from "../toast/Toast";
+import { useDispatch } from 'react-redux'
+import { showRedMessage } from "../../../redux/features/toast/toastSlice";
 import "./auth.scss";
-import leftImage from "../../assets/note-man.png";
-import rightImage from "../../assets/Group 1.png";
+import leftImage from "../../../assets/note-man.png";
+import rightImage from "../../../assets/Group 1.png";
 
-export default function SignUp() {
-  const { open } = useSelector((state) => state.toast);
+export default function SignIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [details, setDetails] = useState({
-    username: "",
     email: "",
     password: "",
   });
@@ -33,40 +30,36 @@ export default function SignUp() {
       dispatch(showRedMessage("Email format is not correct"));
       return
     }
-    fetch("/api/users", {
+    fetch("/api/users/login", {
       method:"post",
       headers:{
         "Content-Type":"application/json"
       },
       body:JSON.stringify({
-        name: details.username,
         email: details.email,
         password: details.password
       })
     }).then(res => res.json())
     .then(data => {
       if(data.message){
-        console.log(data);
         dispatch(showRedMessage(data.message));
       } else {
-        dispatch(showGreenMessage("successfully signed up"))
-        navigate("/login")
+        navigate("/")
       }
-    })
+    }).catch(err => console.log(err))
   };
-
 
   return (
     <div className="background">
-      {
-        open && (<Toast/>)
-      }
-      
       <div className="first-half">
-        <img src={leftImage} alt="leftImage" />
+        <div className="img-cont">
+          <img src={leftImage} alt="boy holding notes" />
+        </div>
       </div>
       <div className="second-half">
-        <img src={rightImage} alt="rightImage" />
+        <div className="img-cont">
+          <img src={rightImage} alt="girl operating phone" />
+        </div>
       </div>
       <div className="container">
         <div className="container-inner">
@@ -75,26 +68,16 @@ export default function SignUp() {
               <p>
                 Welcome to <span>My Notes</span>
               </p>
-              <h1>Sign Up</h1>
+              <h1>Log In</h1>
             </div>
             <div>
-              <p>Have an account?</p>
+              <p>Don't have an account?</p>
               <p>
-                <Link to="/login">Sign In</Link>
+                <Link to="/signup">Sign Up</Link>
               </p>
             </div>
           </div>
           <form onSubmit={handleSubmit}>
-          <div className="form-control">
-              <label>Enter your Username</label>
-              <input
-                type="text"
-                placeholder="Username"
-                name="username"
-                value={details.username}
-                onChange={handleInputChange}
-              />
-            </div>
             <div className="form-control">
               <label>Enter your Email</label>
               <input
@@ -116,7 +99,7 @@ export default function SignUp() {
               />
             </div>
             <div className="form-control">
-              <button type="submit">Sign up</button>
+              <button type="submit">Sign In</button>
             </div>
           </form>
         </div>

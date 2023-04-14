@@ -1,0 +1,25 @@
+.cont {
+  position: relative;
+  width: 200px;
+  height: 120px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .icon {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    top: -1px;
+    right: -1px;
+    height: 25px;
+    width: 80px;
+    border-radius: 0px 14px 0px 0px;
+    .bookmark {
+    }
+  }
+  h3 {
+    font-weight: 500;
+  }
+}

@@ -1,0 +1,33 @@
+@use "../../../App";
+.home {
+  padding: 10px 50px;
+  .notes {
+    display: flex;
+    justify-content: space-around;
+  }
+  .category {
+    margin-top: 50px;
+    .categories {
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+  .note-button {
+    margin-top: 50px;
+    display: flex;
+    justify-content: end;
+    div {
+      height: 55px;
+      width: 55px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background-color: App.$primary-color;
+      &:hover{
+        background-color: #b489ec;
+      }
+    }
+  }
+}

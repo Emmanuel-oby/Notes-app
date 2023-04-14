@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
+$primary-color: #9868D6;
+
 a{
   text-decoration: none;
+}
+
+.app{
+  display: flex;
+  flex-direction: column;
 }

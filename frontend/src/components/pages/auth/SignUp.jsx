@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux'
-import { showRedMessage } from "../../redux/features/toast/toastSlice";
-import Toast from "../toast/Toast";
+import { useDispatch } from "react-redux";
+import {
+  showRedMessage,
+  showGreenMessage,
+} from "../../../redux/features/toast/toastSlice";
 import "./auth.scss";
-import leftImage from "../../assets/note-man.png";
-import rightImage from "../../assets/Group 1.png";
+import leftImage from "../../../assets/note-man.png";
+import rightImage from "../../../assets/Group 1.png";
 
-export default function SignIn() {
-  const { open } = useSelector((state) => state.toast);
+export default function SignUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [details, setDetails] = useState({
+    username: "",
     email: "",
     password: "",
   });
@@ -28,43 +30,49 @@ export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     // console.log(details);
-    if(!/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/.test(details.email)){
+    if (
+      !/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/.test(details.email)
+    ) {
       dispatch(showRedMessage("Email format is not correct"));
-      return
+      return;
     }
-    fetch("/api/users/login", {
-      method:"post",
-      headers:{
-        "Content-Type":"application/json"
+    fetch("/api/users", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
       },
-      body:JSON.stringify({
+      body: JSON.stringify({
+        name: details.username,
         email: details.email,
-        password: details.password
-      })
-    }).then(res => res.json())
-    .then(data => {
-      if(data.message){
-        dispatch(showRedMessage(data.message));
-      } else {
-        navigate("/")
-      }
+        password: details.password,
+      }),
     })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.message) {
+          dispatch(showRedMessage(data.message));
+        } else {
+          localStorage.setItem("jwt", data.token);
+          localStorage.setItem("user", data._id, data.name, data.email);
+          dispatch(showGreenMessage("successfully signed up"));
+          navigate("/login");
+        }
+      })
+      .catch((err) => console.log(err));
   };
-
-  // useEffect(() => {
-  //   dispatch(showRedMessage("this page is still under development"));
-  // }, []);
 
   return (
     <div className="background">
-       {
-        open && (<Toast/>)
-      }
       <div className="first-half">
-        <img src={leftImage} alt="leftImage" />
+        <div className="img-cont">
+          <img src={leftImage} alt="boy holding notes" />
+        </div>
       </div>
       <div className="second-half">
-        <img src={rightImage} alt="rightImage" />
+        <div className="img-cont">
+          <img src={rightImage} alt="girl operating phone" />
+        </div>
       </div>
       <div className="container">
         <div className="container-inner">
@@ -73,16 +81,26 @@ export default function SignIn() {
               <p>
                 Welcome to <span>My Notes</span>
               </p>
-              <h1>Log In</h1>
+              <h1>Sign Up</h1>
             </div>
             <div>
-              <p>Don't have an account?</p>
+              <p>Have an account?</p>
               <p>
-                <Link to="/signup">Sign Up</Link>
+                <Link to="/login">Sign In</Link>
               </p>
             </div>
           </div>
           <form onSubmit={handleSubmit}>
+            <div className="form-control">
+              <label>Enter your Username</label>
+              <input
+                type="text"
+                placeholder="Username"
+                name="username"
+                value={details.username}
+                onChange={handleInputChange}
+              />
+            </div>
             <div className="form-control">
               <label>Enter your Email</label>
               <input
@@ -96,7 +114,7 @@ export default function SignIn() {
             <div className="form-control">
               <label>Enter your Password</label>
               <input
-                type="password"               
+                type="password"
                 placeholder="Password"
                 name="password"
                 value={details.password}
@@ -104,7 +122,7 @@ export default function SignIn() {
               />
             </div>
             <div className="form-control">
-              <button type="submit">Sign In</button>
+              <button type="submit">Sign up</button>
             </div>
           </form>
         </div>

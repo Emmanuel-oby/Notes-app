@@ -2,6 +2,7 @@ import { useState,useRef, useEffect } from "react";
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import Zoom from "@material-ui/core/Zoom";
+import './createNote.scss'
 
 function CreateNote(props) {
     const [isExpanded, setExpanded] = useState(false);
