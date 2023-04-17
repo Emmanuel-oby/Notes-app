@@ -1,16 +1,15 @@
 import React from "react";
 import './noteCard.scss';
 
-function NoteCard({border, background}) {
+function NoteCard({border, background, title, content, time}) {
   return (
     <div className="note" style={{border:border, background:background}}>
       <div className="note-inner">
-        <h3 className="title">Lorem Ipsum</h3>
+        <h3 className="title">{title}</h3>
         <p className="content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-          rhoncus tempor dolor, vitae venenatis nulla
+         {content}
         </p>
-        <p className="time">March 3rd, 2023 11:20am</p>
+        <p className="time">{time}</p>
       </div>
     </div>
   );

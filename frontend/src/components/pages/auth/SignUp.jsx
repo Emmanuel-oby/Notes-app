@@ -5,6 +5,7 @@ import {
   showRedMessage,
   showGreenMessage,
 } from "../../../redux/features/toast/toastSlice";
+import { saveUser } from "../../../redux/features/user/userSlice";
 import "./auth.scss";
 import leftImage from "../../../assets/note-man.png";
 import rightImage from "../../../assets/Group 1.png";
@@ -54,7 +55,8 @@ export default function SignUp() {
           dispatch(showRedMessage(data.message));
         } else {
           localStorage.setItem("jwt", data.token);
-          localStorage.setItem("user", data._id, data.name, data.email);
+          localStorage.setItem("user", JSON.stringify({ "_id":data._id, "name":data.name, "email":data.email}));
+          dispatch(saveUser({ "_id":data._id, "name":data.name, "email":data.email}))
           dispatch(showGreenMessage("successfully signed up"));
           navigate("/login");
         }

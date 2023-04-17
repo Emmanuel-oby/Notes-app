@@ -1,21 +1,25 @@
 .note {
-    padding: 8px;
-    border-radius: 14px;
-    width: 400px;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    .note-inner {
-      .title {
-        font-size: 18px;
-      }
-      .content {
-        font-size: 16px;
-        font-weight: 400;
-      }
-      &:last-child {
-        font-size: 12px;
-        font-weight: 300;
-      }
+  height: fit-content;
+  padding: 8px;
+  border-radius: 14px;
+  max-width: 400px;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  .note-inner {
+    .title {
+      font-size: 18px;
+    }
+    .content {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-size: 16px;
+      font-weight: 400;
+    }
+    &:last-child {
+      font-size: 12px;
+      font-weight: 300;
     }
   }
+}

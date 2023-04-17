@@ -3,7 +3,9 @@
   padding: 10px 50px;
   .notes {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: flex-start;
   }
   .category {
     margin-top: 50px;
