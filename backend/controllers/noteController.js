@@ -16,6 +16,7 @@ const createNote = asynHandler(async (req, res) => {
 		title: req.body.title,
 		body: req.body.body,
 		user: req.user.id,
+		category: req.body.category
 	});
 	res.status(200).json(note);
 });
@@ -69,7 +70,7 @@ const deleteNote = asynHandler(async (req, res) => {
 	}
 
 	await note.remove();
-	res.status(200).json({ id: req.params.id });
+	res.status(200).json({ id: req.params.id }); 
 });
 
 module.exports = {

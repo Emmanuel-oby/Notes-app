@@ -18,6 +18,7 @@ function CreateNote(props) {
   const [note, setNote] = useState({
     title: "",
     content: "",
+    category: "general",
   });
 
   function handleChange(event) {
@@ -33,7 +34,7 @@ function CreateNote(props) {
 
   function submitNote(event) {
     event.preventDefault();
-
+    console.log(note.title, note.category);
     fetch("/api/notes", {
       method: "post",
       headers: {
@@ -43,6 +44,7 @@ function CreateNote(props) {
       body: JSON.stringify({
         title: note.title,
         body: note.content,
+        category: note.category,
       }),
     })
       .then((res) => res.json())
@@ -58,8 +60,9 @@ function CreateNote(props) {
     setNote({
       title: "",
       content: "",
+      category: "general",
     });
-    navigate("/home")
+    navigate("/home");
   }
 
   function expand() {
@@ -86,12 +89,23 @@ function CreateNote(props) {
     <div ref={wrapperRef}>
       <form className="create-note">
         {isExpanded && (
-          <input
-            name="title"
-            onChange={handleChange}
-            value={note.title}
-            placeholder="Title"
-          />
+          <>
+            <div className="select">
+              <label htmlFor="category">Select a category:</label>
+              <select required name="category" id="category" onChange={handleChange}>
+                <option value="general">General</option>
+                <option value="business">Business</option>
+                <option value="important">Important</option>
+                <option value="others">Others</option>
+              </select>
+            </div>
+            <input
+              name="title"
+              onChange={handleChange}
+              value={note.title}
+              placeholder="Title"
+            />
+          </>
         )}
 
         <textarea

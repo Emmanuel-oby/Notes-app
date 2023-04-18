@@ -38,8 +38,8 @@ function Home() {
               title={note.title}
               content={note.body}
               time={note.updatedAt}
-              border="2px solid #e10000"
-              background="rgba(225, 0, 0, 0.1)"
+              border={note.category==="important" ? "#e10000" : note.category==="general" ? "#5403BA" : note.category==="business" ? "#00BF13" : "#F9A400"}
+              background={note.category==="important" ? "rgba(225, 0, 0, 0.15)" : note.category==="general" ? "#E7D3FF" : note.category==="business" ? "rgba(0, 191, 19, 0.15)" : "rgba(249, 164, 0, 0.15)"}
             />
           );
         })}

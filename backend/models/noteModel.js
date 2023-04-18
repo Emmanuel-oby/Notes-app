@@ -15,6 +15,10 @@ const noteSchema = mongoose.Schema(
 			type: String,
 			required: [true, "Please add a body"],
 		},
+		category: {
+			type: String,
+			required: [true, "Please add a category"],
+		},
 	},
 	{ timestamps: true }
 );

@@ -1,6 +1,6 @@
 import React from "react";
 import "./navbar.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import logo from "../../assets/note-logo.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +9,6 @@ import { clearUser } from "../../redux/features/user/userSlice";
 function Navbar() {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   return (
     <div className="navbar">
       <div className="logo">
