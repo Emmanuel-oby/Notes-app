@@ -1,3 +1,5 @@
+@use "../../App";
+
 .note {
   height: fit-content;
   padding: 8px;
@@ -5,8 +7,46 @@
   max-width: 400px;
   min-width: 200px;
   .note-inner {
-    .title {
-      font-size: 18px;
+    .top {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .option {
+        padding: 2px;
+        border-radius: 5px;
+        background: App.$background;
+        position: absolute;
+        right: 0px;
+        display: flex;
+        gap: 5px;
+        justify-content: space-between;
+        align-items: center;
+        .icon {
+          height: 25px;
+          width: 25px;
+        }
+      }
+      .title {
+        font-size: 18px;
+        margin: initial;
+      }
+      .icon-cont {
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:hover {
+          background-color: #666;
+        }
+        .icon {
+          height: 20px;
+          width: 20px;
+        }
+      }
+      
     }
     .content {
       display: -webkit-box;

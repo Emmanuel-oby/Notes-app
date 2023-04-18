@@ -1,12 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 $primary-color: #9868D6;
+$background: #16181d;
+$text-color: rgb(246 247 249/1);
+$dark-inside: #343a46;
 
 a{
   text-decoration: none;
-}
-
-.app{
-  display: flex;
-  flex-direction: column;
 }

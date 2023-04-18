@@ -1,1 +1,7 @@
+@use '../../../App';
 
+.land{
+    top: 65px;
+    background-color: App.$background;
+    color: App.$text-color;
+}

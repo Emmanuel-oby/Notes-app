@@ -1,5 +1,9 @@
 @use "../../../App";
 .home {
+  background-color: App.$background;
+  color: App.$text-color;
+  top: 65px;
+  position: relative;
   padding: 10px 50px;
   .notes {
     display: flex;
@@ -17,7 +21,7 @@
   }
   .note-button {
     margin-top: 50px;
-    display: flex;
+    display: flex; 
     justify-content: end;
     div {
       height: 55px;

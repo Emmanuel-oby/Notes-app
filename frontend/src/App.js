@@ -30,7 +30,7 @@ function App() {
     <>
     <div className="app">
       <Navbar />
-      <Routes>
+      <Routes className="route">
         <Route path="/" element={<Land />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<LogIn />} />

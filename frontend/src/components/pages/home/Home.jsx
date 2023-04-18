@@ -29,7 +29,7 @@ function Home() {
 
   return (
     <div className="home">
-      <h2 className="greetings">Good Evening, {user.name}</h2>
+      <h2 className="greetings">Good Evening, {user?.name}</h2>
       <div className="notes">
         {notes.map((note) => {
           return (
@@ -39,7 +39,7 @@ function Home() {
               content={note.body}
               time={note.updatedAt}
               border={note.category==="important" ? "#e10000" : note.category==="general" ? "#5403BA" : note.category==="business" ? "#00BF13" : "#F9A400"}
-              background={note.category==="important" ? "rgba(225, 0, 0, 0.15)" : note.category==="general" ? "#E7D3FF" : note.category==="business" ? "rgba(0, 191, 19, 0.15)" : "rgba(249, 164, 0, 0.15)"}
+              background={note.category==="important" ? "rgba(225, 0, 0, 0.15)" : note.category==="general" ? "rgba(84, 3, 186, 0.15)" : note.category==="business" ? "rgba(0, 191, 19, 0.15)" : "rgba(249, 164, 0, 0.15)"}
             />
           );
         })}

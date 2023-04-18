@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./navbar.scss";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
@@ -9,6 +9,7 @@ import { clearUser } from "../../redux/features/user/userSlice";
 function Navbar() {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const [search, setSearch] = useState("")
   return (
     <div className="navbar">
       <div className="logo">
@@ -21,9 +22,9 @@ function Navbar() {
         <div className="search">
           <div>
             <Icon icon="material-symbols:search-rounded" className="icon" />
-            <input type="text" placeholder="Search Notes" />
+            <input type="text" placeholder="Search Notes" value={search} onChange={(e)=>{setSearch(e.target.value)}}/>
           </div>
-          <Icon icon="material-symbols:close" className="icon" />
+          <Icon icon="material-symbols:close" className="icon" onClick={()=>{setSearch("")}}/>
         </div>
       )}
 

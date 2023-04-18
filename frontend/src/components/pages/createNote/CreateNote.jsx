@@ -75,10 +75,8 @@ function CreateNote(props) {
           setExpanded(false);
         }
       }
-      // Bind the event listener
       document.addEventListener("mousedown", handleClickOutside);
       return () => {
-        // Unbind the event listener on clean up
         document.removeEventListener("mousedown", handleClickOutside);
       };
     }, [ref]);
@@ -86,13 +84,13 @@ function CreateNote(props) {
   const wrapperRef = useRef(null);
   useOutside(wrapperRef);
   return (
-    <div ref={wrapperRef}>
+    <div ref={wrapperRef} className="form">
       <form className="create-note">
         {isExpanded && (
           <>
             <div className="select">
               <label htmlFor="category">Select a category:</label>
-              <select required name="category" id="category" onChange={handleChange}>
+              <select name="category" id="category" onChange={handleChange}>
                 <option value="general">General</option>
                 <option value="business">Business</option>
                 <option value="important">Important</option>

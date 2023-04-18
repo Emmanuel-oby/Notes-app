@@ -4,6 +4,7 @@ a{
     color: App.$primary-color;
 }
 .background {
+  top: 65px;
   display: flex;
   position: relative;
   height: calc(100vh - 65px);
@@ -50,7 +51,8 @@ a{
   }
   .container {
     position: absolute;
-    background-color: #ffffff;
+    background-color: App.$background;
+    color: App.$text-color;
     border-radius: 20px;
     left: 0;
     right: 0;
@@ -73,6 +75,8 @@ a{
           flex-direction: column;
           font-size: 16px;
           & input {
+            background: App.$dark-inside;
+            color: App.$text-color;
             border: 1px solid gray;
             border-radius: 10px;
             outline: none;
