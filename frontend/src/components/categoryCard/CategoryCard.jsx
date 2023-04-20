@@ -2,9 +2,10 @@ import React from "react";
 import { Icon } from "@iconify/react";
 import "./categoryCard.scss";
 
-function CategoryCard({ border, background, name }) {
+function CategoryCard({ border, background, name, handleClick }) {
   return (
     <div
+    onClick={()=> handleClick(name)}
       className="cont"
       style={{ border: `2px solid ${border}`, background: background }}
     >

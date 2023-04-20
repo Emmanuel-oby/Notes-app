@@ -6,6 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   .icon {
     position: absolute;
     display: flex;
@@ -16,10 +17,9 @@
     height: 25px;
     width: 80px;
     border-radius: 0px 14px 0px 0px;
-    .bookmark {
-    }
   }
   h3 {
     font-weight: 500;
+    text-transform: capitalize;
   }
 }

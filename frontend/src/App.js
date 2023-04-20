@@ -9,6 +9,7 @@ import Toast from "./components/toast/Toast";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "./components/navbar/Navbar";
 import Note from "./pages/notes/Note";
+import NotesCategory from "./pages/notesCategory/NotesCategory";
 import { saveUser } from "./redux/features/user/userSlice";
 import { useEffect } from "react";
 
@@ -38,6 +39,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/CreateNote" element={<CreateNote />} />
         <Route path="/notes/:noteid" element={<Note />} />
+        <Route path="/notes/category/:category" element={<NotesCategory />} />
       </Routes>
       </div>
       {open && <Toast />}

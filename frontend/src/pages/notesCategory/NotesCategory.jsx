@@ -1,32 +1,26 @@
 import React, { useEffect, useState } from "react";
-import "./home.scss";
-import NoteCard from "../../components/noteCard/NoteCard";
-import CategoryCard from "../../components/categoryCard/CategoryCard";
+import { useDispatch } from "react-redux";
 import { Icon } from "@iconify/react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import NoteCard from "../../components/noteCard/NoteCard";
 import {
   showGreenMessage,
   showRedMessage,
 } from "../../redux/features/toast/toastSlice";
+import "./notesCategory.scss"
 
-function Home() {
-  const [notes, setNotes] = useState([]);
-  const { user } = useSelector((state) => state.user);
-  const navigate = useNavigate();
+function NotesCategory() {
+  const { category } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [notes, setNotes] = useState([]);
 
   function createNote() {
     navigate("/createNote");
-    console.log("nnanan");
-  }
-
-  function showNotes(category){
-    navigate(`/notes/category/${category}`)
   }
 
   function getNotes() {
-    fetch("/api/notes", {
+    fetch(`/api/notes/category/${category}`, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
       },
@@ -62,10 +56,8 @@ function Home() {
   useEffect(() => {
     getNotes();
   }, []);
-
   return (
     <div className="home">
-      <h2 className="greetings">Good Evening, {user?.name}</h2>
       <div className="notes">
         {notes.map((note) => {
           return (
@@ -98,35 +90,6 @@ function Home() {
           );
         })}
       </div>
-      <div className="category">
-        <h3>Categories</h3>
-        <div className="categories">
-          <CategoryCard
-            border="#5403ba"
-            background="rgba(84, 3, 186, 0.15)"
-            name="general"
-            handleClick={showNotes}
-          />
-          <CategoryCard
-            border="#00BF13"
-            background="rgba(0, 191, 19, 0.15)"
-            name="business"
-            handleClick={showNotes}
-          />
-          <CategoryCard
-            border="#e10000"
-            background="rgba(225, 0, 0, 0.1)"
-            name="important"
-            handleClick={showNotes}
-          />
-          <CategoryCard
-            border="#f9a400"
-            background="rgba(249, 164, 0, 0.15)"
-            name="others"
-            handleClick={showNotes}
-          />
-        </div>
-      </div>
       <div className="note-button">
         <div onClick={createNote}>
           <Icon
@@ -139,4 +102,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default NotesCategory;
