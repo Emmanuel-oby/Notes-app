@@ -2,14 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import "./noteCard.scss";
 import { Icon } from "@iconify/react";
 
-function NoteCard({ border, background, title, content, time }) {
+function NoteCard({ border, background, title, content, time, id, onDelete }) {
+
   const [showOpt, setShowOpt] = useState(false);
   const [isHover1, setIsHover1] = useState(false);
   const [isHover2, setIsHover2] = useState(false);
-
-  function deleteNote(event) {
-    event.preventDefault();
-  }
 
   function useOutside(ref) {
     useEffect(() => {
@@ -44,30 +41,39 @@ function NoteCard({ border, background, title, content, time }) {
               <Icon
                 icon="ic:outline-delete-outline"
                 className="icon"
-                onClick={deleteNote}
+                onClick={() => onDelete(id)}
                 style={{ color: isHover1 ? border : "inherit" }}
-                onMouseEnter={()=>{setIsHover1(true)}}
-                onMouseLeave={()=>{setIsHover1(false)}}
+                onMouseEnter={() => {
+                  setIsHover1(true);
+                }}
+                onMouseLeave={() => {
+                  setIsHover1(false);
+                }}
               />
+
               <Icon
                 icon="mdi:clipboard-edit-outline"
                 className="icon"
-                onClick={deleteNote}
                 style={{ color: isHover2 ? border : "inherit" }}
-                onMouseEnter={()=>{setIsHover2(true)}}
-                onMouseLeave={()=>{setIsHover2(false);}}
+                onMouseEnter={() => {
+                  setIsHover2(true);
+                }}
+                onMouseLeave={() => {
+                  setIsHover2(false);
+                }}
               />
             </div>
           )}
-
-          <div
-            className="icon-cont"
-            onClick={() => {
-              setShowOpt(true);
-            }}
-          >
-            <Icon icon="bi:three-dots-vertical" className="icon" />
-          </div>
+          {!showOpt && (
+            <div
+              className="icon-cont"
+              onClick={() => {
+                setShowOpt(true);
+              }}
+            >
+              <Icon icon="bi:three-dots-vertical" className="icon" />
+            </div>
+          )}
         </div>
 
         <p className="content">{content}</p>

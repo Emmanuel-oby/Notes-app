@@ -3,17 +3,24 @@ import "./home.scss";
 import NoteCard from "../../noteCard/NoteCard";
 import CategoryCard from "../../categoryCard/CategoryCard";
 import { Icon } from "@iconify/react";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  showGreenMessage,
+  showRedMessage,
+} from "../../../redux/features/toast/toastSlice";
 
 function Home() {
   const [notes, setNotes] = useState([]);
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   function createNote() {
     navigate("/createNote");
   }
-  useEffect(() => {
+
+  function getNotes() {
     fetch("/api/notes", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
@@ -25,6 +32,30 @@ function Home() {
         setNotes(data);
       })
       .catch((err) => console.log(err));
+  }
+
+  function deleteNote(id) {
+    fetch(`/api/notes/${id}`, {
+      method: "delete",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.message) {
+          dispatch(showRedMessage(data.message));
+        } else {
+          dispatch(showGreenMessage("deleted note successfully"));
+          getNotes();
+        }
+      })
+      .catch((err) => console.log(err));
+  }
+
+  useEffect(() => {
+    getNotes();
   }, []);
 
   return (
@@ -34,12 +65,30 @@ function Home() {
         {notes.map((note) => {
           return (
             <NoteCard
+              onDelete={deleteNote}
               key={note._id}
+              id={note._id}
               title={note.title}
               content={note.body}
               time={note.updatedAt}
-              border={note.category==="important" ? "#e10000" : note.category==="general" ? "#5403BA" : note.category==="business" ? "#00BF13" : "#F9A400"}
-              background={note.category==="important" ? "rgba(225, 0, 0, 0.15)" : note.category==="general" ? "rgba(84, 3, 186, 0.15)" : note.category==="business" ? "rgba(0, 191, 19, 0.15)" : "rgba(249, 164, 0, 0.15)"}
+              border={
+                note.category === "important"
+                  ? "#e10000"
+                  : note.category === "general"
+                  ? "#5403BA"
+                  : note.category === "business"
+                  ? "#00BF13"
+                  : "#F9A400"
+              }
+              background={
+                note.category === "important"
+                  ? "rgba(225, 0, 0, 0.15)"
+                  : note.category === "general"
+                  ? "rgba(84, 3, 186, 0.15)"
+                  : note.category === "business"
+                  ? "rgba(0, 191, 19, 0.15)"
+                  : "rgba(249, 164, 0, 0.15)"
+              }
             />
           );
         })}

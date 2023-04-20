@@ -34,7 +34,6 @@ function CreateNote(props) {
 
   function submitNote(event) {
     event.preventDefault();
-    console.log(note.title, note.category);
     fetch("/api/notes", {
       method: "post",
       headers: {
