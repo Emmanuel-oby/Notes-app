@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux'
-import { showRedMessage, showGreenMessage } from "../../../redux/features/toast/toastSlice";
-import { saveUser } from "../../../redux/features/user/userSlice";
+import { showRedMessage, showGreenMessage } from "../../redux/features/toast/toastSlice";
+import { saveUser } from "../../redux/features/user/userSlice";
 import "./auth.scss";
-import leftImage from "../../../assets/note-man.png";
-import rightImage from "../../../assets/Group 1.png";
+import leftImage from "../../assets/note-man.png";
+import rightImage from "../../assets/Group 1.png";
 
 export default function SignIn() {
   const dispatch = useDispatch();

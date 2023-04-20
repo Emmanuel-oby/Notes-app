@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import {
   showGreenMessage,
   showRedMessage,
-} from "../../../redux/features/toast/toastSlice";
+} from "../../redux/features/toast/toastSlice";
 import "../createNote/createNote.scss";
 
 function Note() {

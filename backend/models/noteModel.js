@@ -9,15 +9,14 @@ const noteSchema = mongoose.Schema(
 		},
 		title: {
 			type: String,
-			required: [true, "Please add a title"],
 		},
 		body: {
 			type: String,
-			required: [true, "Please add a body"],
+
 		},
 		category: {
 			type: String,
-			required: [true, "Please add a category"],
+
 		},
 	},
 	{ timestamps: true }

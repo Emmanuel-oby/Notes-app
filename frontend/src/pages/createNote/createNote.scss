@@ -1,4 +1,4 @@
-@use "../../../App";
+@use "../../App";
 
 .form {
   top: 65px;
@@ -7,7 +7,7 @@
     background-color: App.$background;
     color: App.$text-color;
     position: relative;
-    width: 480px;
+    width: 70%;
     margin: 30px auto 20px auto;
     padding: 15px;
     border-radius: 7px;

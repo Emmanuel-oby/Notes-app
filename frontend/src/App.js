@@ -1,14 +1,14 @@
 import "./App.scss";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import Land from "./components/pages/land/Land";
-import Home from "./components/pages/home/Home";
-import SignUp from "./components/pages/auth/SignUp";
-import LogIn from "./components/pages/auth/LogIn";
-import CreateNote from "./components/pages/createNote/CreateNote";
+import Land from "./pages/land/Land";
+import Home from "./pages/home/Home";
+import SignUp from "./pages/auth/SignUp";
+import LogIn from "./pages/auth/LogIn";
+import CreateNote from "./pages/createNote/CreateNote";
 import Toast from "./components/toast/Toast";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "./components/navbar/Navbar";
-import Note from "./components/pages/notes/Note";
+import Note from "./pages/notes/Note";
 import { saveUser } from "./redux/features/user/userSlice";
 import { useEffect } from "react";
 

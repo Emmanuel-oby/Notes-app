@@ -17,7 +17,7 @@ const getNote = asynHandler(async (req, res) => {
 })
 
 const createNote = asynHandler(async (req, res) => {
-	if (!req.body.title || !req.body.body) {
+	if (!req.body.title && !req.body.body) {
 		res.status(400);
 		throw new Error("Please add text");
 	}

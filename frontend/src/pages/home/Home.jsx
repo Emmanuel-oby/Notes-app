@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./home.scss";
-import NoteCard from "../../noteCard/NoteCard";
-import CategoryCard from "../../categoryCard/CategoryCard";
+import NoteCard from "../../components/noteCard/NoteCard";
+import CategoryCard from "../../components/categoryCard/CategoryCard";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   showGreenMessage,
   showRedMessage,
-} from "../../../redux/features/toast/toastSlice";
+} from "../../redux/features/toast/toastSlice";
 
 function Home() {
   const [notes, setNotes] = useState([]);
