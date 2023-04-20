@@ -8,6 +8,7 @@ import CreateNote from "./components/pages/createNote/CreateNote";
 import Toast from "./components/toast/Toast";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "./components/navbar/Navbar";
+import Note from "./components/pages/notes/Note";
 import { saveUser } from "./redux/features/user/userSlice";
 import { useEffect } from "react";
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/login" element={<LogIn />} />
         <Route path="/home" element={<Home />} />
         <Route path="/CreateNote" element={<CreateNote />} />
+        <Route path="/notes/:noteid" element={<Note />} />
       </Routes>
       </div>
       {open && <Toast />}

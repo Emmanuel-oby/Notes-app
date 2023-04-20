@@ -2,24 +2,34 @@ import { useState, useRef, useEffect } from "react";
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import Zoom from "@material-ui/core/Zoom";
-import "./createNote.scss";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
   showGreenMessage,
   showRedMessage,
 } from "../../../redux/features/toast/toastSlice";
-import { useNavigate } from "react-router-dom";
+import "../createNote/createNote.scss";
 
-function CreateNote() {
+function Note() {
+  const { noteid } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isExpanded, setExpanded] = useState(false);
+  const [note, setNote] = useState({});
 
-  const [note, setNote] = useState({
-    title: "",
-    content: "",
-    category: "general",
-  });
+  useEffect(() => {
+    fetch(`/api/notes/${noteid}`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setNote(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -34,15 +44,15 @@ function CreateNote() {
 
   function submitNote(event) {
     event.preventDefault();
-    fetch("/api/notes", {
-      method: "post",
+    fetch(`/api/notes/${noteid}`, {
+      method: "put",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("jwt"),
       },
       body: JSON.stringify({
         title: note.title,
-        body: note.content,
+        body: note.body,
         category: note.category,
       }),
     })
@@ -52,15 +62,10 @@ function CreateNote() {
         if (data.message) {
           dispatch(showRedMessage(data.message));
         } else {
-          dispatch(showGreenMessage("created note successfully"));
+          dispatch(showGreenMessage("updated note successfully"));
         }
       })
       .catch((err) => console.log(err));
-    setNote({
-      title: "",
-      content: "",
-      category: "general",
-    });
     navigate("/home");
   }
 
@@ -85,31 +90,34 @@ function CreateNote() {
   return (
     <div ref={wrapperRef} className="form">
       <form className="create-note">
-        {isExpanded && (
-          <>
-            <div className="select">
-              <label htmlFor="category">Select a category:</label>
-              <select name="category" id="category" onChange={handleChange}>
-                <option value="general">General</option>
-                <option value="business">Business</option>
-                <option value="important">Important</option>
-                <option value="others">Others</option>
-              </select>
-            </div>
-            <input
-              name="title"
+        <>
+          <div className="select">
+            <label htmlFor="category">Select a category:</label>
+            <select
+              name="category"
+              id="category"
+              value={note.category}
               onChange={handleChange}
-              value={note.title}
-              placeholder="Title"
-            />
-          </>
-        )}
+            >
+              <option value="general">General</option>
+              <option value="business">Business</option>
+              <option value="important">Important</option>
+              <option value="others">Others</option>
+            </select>
+          </div>
+          <input
+            name="title"
+            onChange={handleChange}
+            value={note.title}
+            placeholder="Title"
+          />
+        </>
 
         <textarea
-          name="content"
+          name="body"
           onClick={expand}
           onChange={handleChange}
-          value={note.content}
+          value={note.body}
           placeholder="Take a note..."
           rows={isExpanded ? 3 : 1}
         />
@@ -123,4 +131,4 @@ function CreateNote() {
   );
 }
 
-export default CreateNote;
+export default Note;

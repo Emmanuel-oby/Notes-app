@@ -7,6 +7,15 @@ const getNotes = asynHandler(async (req, res) => {
 	res.status(200).json(notes);
 });
 
+const getNote = asynHandler(async (req, res) => {
+	const note = await Note.findById(req.params.id);
+	if (!note) {
+		res.status(400);
+		throw new Error("Note not found");
+	}
+	res.status(200).json(note);
+})
+
 const createNote = asynHandler(async (req, res) => {
 	if (!req.body.title || !req.body.body) {
 		res.status(400);
@@ -75,6 +84,7 @@ const deleteNote = asynHandler(async (req, res) => {
 
 module.exports = {
 	getNotes,
+	getNote,
 	createNote,
 	updateNote,
 	deleteNote,

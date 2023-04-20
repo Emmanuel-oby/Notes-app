@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./noteCard.scss";
 import { Icon } from "@iconify/react";
+import { useNavigate } from "react-router-dom";
 
 function NoteCard({ border, background, title, content, time, id, onDelete }) {
 
   const [showOpt, setShowOpt] = useState(false);
   const [isHover1, setIsHover1] = useState(false);
   const [isHover2, setIsHover2] = useState(false);
+  const navigate = useNavigate();
 
   function useOutside(ref) {
     useEffect(() => {
@@ -54,6 +56,7 @@ function NoteCard({ border, background, title, content, time, id, onDelete }) {
               <Icon
                 icon="mdi:clipboard-edit-outline"
                 className="icon"
+                onClick={()=>navigate(`/notes/${id}`)}
                 style={{ color: isHover2 ? border : "inherit" }}
                 onMouseEnter={() => {
                   setIsHover2(true);
