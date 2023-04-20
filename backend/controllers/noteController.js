@@ -7,6 +7,11 @@ const getNotes = asynHandler(async (req, res) => {
 	res.status(200).json(notes);
 });
 
+const getNotesByCategory = asynHandler(async (req, res) => {
+	const notes = await Note.find({ user: req.user.id, category: req.params.category });
+	res.status(200).json(notes);
+});
+
 const getNote = asynHandler(async (req, res) => {
 	const note = await Note.findById(req.params.id);
 	if (!note) {
@@ -84,6 +89,7 @@ const deleteNote = asynHandler(async (req, res) => {
 
 module.exports = {
 	getNotes,
+	getNotesByCategory,
 	getNote,
 	createNote,
 	updateNote,
