@@ -18,7 +18,6 @@ function Home() {
 
   function createNote() {
     navigate("/createNote");
-    console.log("nnanan");
   }
 
   function showNotes(category){

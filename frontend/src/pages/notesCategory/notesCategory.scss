@@ -5,6 +5,20 @@
   top: 65px;
   position: relative;
   padding: 10px 50px;
+  .head{
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    margin-bottom: 50px;
+  .icon{
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+  }
+    span{
+      text-transform: capitalize;
+    }
+  }
   .notes {
     display: flex;
     flex-wrap: wrap;

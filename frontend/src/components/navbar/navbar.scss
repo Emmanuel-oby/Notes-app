@@ -1,9 +1,5 @@
 @use "../../App";
 
-.icon {
-  height: 35px;
-  width: 35px;
-}
 .navbar {
   -webkit-box-shadow: 0px 1px 15px -1px rgba(0, 0, 0, 0.45);
   -moz-box-shadow: 0px 1px 15px -1px rgba(0, 0, 0, 0.45);
@@ -81,6 +77,10 @@
       gap: 50px;
       h3 {
         font-size: 14px;
+      }
+      .icon {
+        height: 35px;
+        width: 35px;
       }
       a {
         color: #333333;

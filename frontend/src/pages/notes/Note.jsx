@@ -15,7 +15,7 @@ function Note() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isExpanded, setExpanded] = useState(false);
-  const [note, setNote] = useState({});
+  const [note, setNote] = useState('');
 
   useEffect(() => {
     fetch(`/api/notes/${noteid}`, {

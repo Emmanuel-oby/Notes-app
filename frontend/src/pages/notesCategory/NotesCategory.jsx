@@ -58,6 +58,10 @@ function NotesCategory() {
   }, []);
   return (
     <div className="home">
+      <div className="head">
+      <Icon icon="material-symbols:arrow-back-rounded" className="icon" onClick={()=>navigate("/home")}/>
+        <h3 className="note-category"><span>{category}</span> Notes</h3>
+      </div>
       <div className="notes">
         {notes.map((note) => {
           return (

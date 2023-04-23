@@ -14,6 +14,7 @@ function CreateNote() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isExpanded, setExpanded] = useState(false);
+  const wrapperRef = useRef(null);
 
   const [note, setNote] = useState({
     title: "",
@@ -80,7 +81,7 @@ function CreateNote() {
       };
     }, [ref]);
   }
-  const wrapperRef = useRef(null);
+
   useOutside(wrapperRef);
   return (
     <div ref={wrapperRef} className="form">
