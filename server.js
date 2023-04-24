@@ -2,6 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose");
 const colors = require("colors")
 const dotenv = require("dotenv").config()
+const path = require("path");
 const { errorHandler } = require("./middleware/errorMiddleware")
 const PORT = process.env.PORT || 3000
 const app = express()
@@ -13,7 +14,6 @@ const connectDB = async ()=>{
         console.log(`mongodb connected: ${conn.connection.host}`.cyan.underline);
         if (process.env.NODE_ENV == "production") {
             app.use(express.static("frontend/build"));
-            const path = require("path");
             app.get("*", (req, res) => {
               res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
             });
