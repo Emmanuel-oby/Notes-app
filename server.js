@@ -26,8 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/notes", require("./routes/noteRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
 
-app.use(errorHandler);
-app.use(express.static(path.join("./frontend/build")));
+app.use(express.static(path.join(__dirname, "./frontend/build")));
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./frontend/build/index.html"),
   function(err){
@@ -35,7 +34,7 @@ app.get("*", (req, res) => {
   });
 });
 
-
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
