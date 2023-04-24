@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const colors = require("colors");
 const dotenv = require("dotenv").config();
 const path = require("path");
-const { errorHandler } = require("./middleware/errorMiddleware");
+const { errorHandler } = require("./backend/middleware/errorMiddleware");
 const PORT = process.env.PORT || 3000;
 const app = express();
 
@@ -23,8 +23,8 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/api/notes", require("./routes/noteRoutes"));
-app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/notes", require("./backend/routes/noteRoutes"));
+app.use("/api/users", require("./backend/routes/userRoutes"));
 
 app.use(express.static(path.join(__dirname, "./frontend/build")));
 app.get("*", (req, res) => {
