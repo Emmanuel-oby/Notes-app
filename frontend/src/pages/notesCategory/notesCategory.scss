@@ -1,10 +1,5 @@
 @use "../../App";
 .home {
-  background-color: App.$background;
-  color: App.$text-color;
-  top: 65px;
-  position: relative;
-  padding: 10px 50px;
   .head{
     display: flex;
     gap: 50px;
@@ -19,16 +14,13 @@
       text-transform: capitalize;
     }
   }
-  .notes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    justify-content: flex-start;
-  }
   .note-button {
     margin-top: 50px;
     display: flex; 
     justify-content: end;
+    @media (max-width: 960px){
+      justify-content: center;
+    }
     div {
       height: 55px;
       width: 55px;

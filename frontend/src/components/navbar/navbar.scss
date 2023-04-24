@@ -42,6 +42,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media (max-width: 960px){
+      display: none;
+    }
     &:focus-within {
       border: 2px solid #c5a1f5;
     }
@@ -72,15 +75,29 @@
     margin-left: 15px;
     .nav-inner {
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-between;
       align-items: center;
       gap: 50px;
+      @media (max-width: 765px){
+        gap: 0;
+      }
+      .menu-icon{
+        display: none;
+        height: 35px;
+        width: 35px;
+        @media (max-width: 765px){
+          display: block;
+        }
+      }
       h3 {
         font-size: 14px;
       }
       .icon {
         height: 35px;
         width: 35px;
+        @media (max-width: 765px){
+          display: none;
+        }
       }
       a {
         color: #333333;

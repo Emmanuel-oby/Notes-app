@@ -10,6 +10,9 @@
     flex-wrap: wrap;
     gap: 40px;
     justify-content: flex-start;
+    @media (max-width: 960px){
+      justify-content: center;
+    }
   }
   .category {
     margin-top: 50px;
@@ -17,12 +20,17 @@
       margin-top: 40px;
       display: flex;
       justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
     }
   }
   .note-button {
     margin: 50px;
     display: flex; 
     justify-content: end;
+    @media (max-width: 960px){
+      justify-content: center;
+    }
     div {
       height: 55px;
       width: 55px;

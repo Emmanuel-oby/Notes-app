@@ -9,7 +9,7 @@ import { clearUser } from "../../redux/features/user/userSlice";
 function Navbar() {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
   return (
     <div className="navbar">
       <div className="logo">
@@ -22,15 +22,29 @@ function Navbar() {
         <div className="search">
           <div>
             <Icon icon="material-symbols:search-rounded" className="icon" />
-            <input type="text" placeholder="Search Notes" value={search} onChange={(e)=>{setSearch(e.target.value)}}/>
+            <input
+              type="text"
+              placeholder="Search Notes"
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+            />
           </div>
-          <Icon icon="material-symbols:close" className="icon" onClick={()=>{setSearch("")}}/>
+          <Icon
+            icon="material-symbols:close"
+            className="icon"
+            onClick={() => {
+              setSearch("");
+            }}
+          />
         </div>
       )}
 
       <div>
         <nav className="nav">
           <div className="nav-inner">
+              <Icon icon="bx:menu-alt-right" className="menu-icon" />
             {!user ? (
               <>
                 <Link to="/signup">
