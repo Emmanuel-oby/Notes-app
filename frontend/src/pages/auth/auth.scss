@@ -23,6 +23,9 @@ a{
       left: 20%;
       height: 35%;
       width: 35%;
+      @media (max-width: 765px){
+        display: none;
+      }
       img{
         height: 100%;
         width: 100%;
@@ -43,6 +46,9 @@ a{
       right: 20%;
       height: 35%;
       width: 50%;
+      @media (max-width: 765px){
+        display: none;
+      }
       img{
         height: 100%;
         width: 100%;
@@ -61,6 +67,9 @@ a{
     width: 30%;
     height: fit-content;
     margin: auto;
+    @media (max-width: 900px){
+      width: 80%;
+    }
     .container-inner {
       padding: 30px;
       .form-intro {
