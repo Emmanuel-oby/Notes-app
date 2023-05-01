@@ -97,11 +97,12 @@
       .icon {
         height: 35px;
         width: 35px;
+        
+      }
+      a {
         @media (max-width: 765px){
           display: none;
         }
-      }
-      a {
         color: #333333;
         &:hover,
         &:focus {
@@ -115,7 +116,7 @@
       display: flex;
       justify-content: center;
       gap: 20px;
-      top: 0;
+      top: 80px;
       bottom: 0;
       right: 0;
       left: 0;

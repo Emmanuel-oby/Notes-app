@@ -4,6 +4,7 @@ import Fab from "@material-ui/core/Fab";
 import Zoom from "@material-ui/core/Zoom";
 import "./createNote.scss";
 import { useDispatch } from "react-redux";
+import { Icon } from "@iconify/react";
 import {
   showGreenMessage,
   showRedMessage,
@@ -13,8 +14,6 @@ import { useNavigate } from "react-router-dom";
 function CreateNote() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isExpanded, setExpanded] = useState(false);
-  const wrapperRef = useRef(null);
 
   const [note, setNote] = useState({
     title: "",
@@ -54,6 +53,7 @@ function CreateNote() {
           dispatch(showRedMessage(data.message));
         } else {
           dispatch(showGreenMessage("created note successfully"));
+          navigate("/home");
         }
       })
       .catch((err) => console.log(err));
@@ -62,64 +62,45 @@ function CreateNote() {
       content: "",
       category: "general",
     });
-    navigate("/home");
   }
 
-  function expand() {
-    setExpanded(true);
-  }
-  function useOutside(ref) {
-    useEffect(() => {
-      function handleClickOutside(event) {
-        if (ref.current && !ref.current.contains(event.target)) {
-          setExpanded(false);
-        }
-      }
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [ref]);
-  }
-
-  useOutside(wrapperRef);
   return (
-    <div ref={wrapperRef} className="form">
-      <form className="create-note">
-        {isExpanded && (
-          <>
-            <div className="select">
-              <label htmlFor="category">Select a category:</label>
-              <select name="category" id="category" onChange={handleChange}>
-                <option value="general">General</option>
-                <option value="business">Business</option>
-                <option value="important">Important</option>
-                <option value="others">Others</option>
-              </select>
-            </div>
-            <input
-              name="title"
-              onChange={handleChange}
-              value={note.title}
-              placeholder="Title"
-            />
-          </>
-        )}
+    <div>
+      <div className="form">
+        <form className="create-note">
+          <div className="select">
+            <label htmlFor="category">Select a category:</label>
+            <select name="category" id="category" onChange={handleChange}>
+              <option value="general">General</option>
+              <option value="business">Business</option>
+              <option value="important">Important</option>
+              <option value="others">Others</option>
+            </select>
+          </div>
+          <input
+            name="title"
+            onChange={handleChange}
+            value={note.title}
+            placeholder="Title"
+          />
 
-        <textarea
-          name="content"
-          onClick={expand}
-          onChange={handleChange}
-          value={note.content}
-          placeholder="Take a note..."
-          rows={isExpanded ? 3 : 1}
-        />
-        <Zoom in={isExpanded}>
-          <Fab onClick={submitNote}>
-            <AddIcon />
-          </Fab>
-        </Zoom>
-      </form>
+          <textarea
+            name="content"
+            onChange={handleChange}
+            value={note.content}
+            placeholder="Take a note..."
+            rows={3}
+          />
+        </form>
+      </div>
+      <div className="note-button">
+        <div onClick={submitNote}>
+          <Icon
+            icon="material-symbols:check-small-rounded"
+            style={{ width: "40px", height: "40px" }}
+          />
+        </div>
+      </div>
     </div>
   );
 }

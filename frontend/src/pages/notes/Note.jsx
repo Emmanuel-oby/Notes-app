@@ -1,9 +1,7 @@
-import { useState, useRef, useEffect } from "react";
-import AddIcon from "@material-ui/icons/Add";
-import Fab from "@material-ui/core/Fab";
-import Zoom from "@material-ui/core/Zoom";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { Icon } from '@iconify/react';
 import {
   showGreenMessage,
   showRedMessage,
@@ -14,7 +12,6 @@ function Note() {
   const { noteid } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isExpanded, setExpanded] = useState(false);
   const [note, setNote] = useState('');
 
   useEffect(() => {
@@ -63,34 +60,17 @@ function Note() {
           dispatch(showRedMessage(data.message));
         } else {
           dispatch(showGreenMessage("updated note successfully"));
+          navigate("/home");
         }
       })
       .catch((err) => console.log(err));
-    navigate("/home");
+   
   }
-
-  function expand() {
-    setExpanded(true);
-  }
-  function useOutside(ref) {
-    useEffect(() => {
-      function handleClickOutside(event) {
-        if (ref.current && !ref.current.contains(event.target)) {
-          setExpanded(false);
-        }
-      }
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [ref]);
-  }
-  const wrapperRef = useRef(null);
-  useOutside(wrapperRef);
+  
   return (
-    <div ref={wrapperRef} className="form">
+    <div>
+    <div className="form">
       <form className="create-note">
-        <>
           <div className="select">
             <label htmlFor="category">Select a category:</label>
             <select
@@ -111,22 +91,24 @@ function Note() {
             value={note.title}
             placeholder="Title"
           />
-        </>
 
         <textarea
           name="body"
-          onClick={expand}
           onChange={handleChange}
           value={note.body}
           placeholder="Take a note..."
-          rows={isExpanded ? 3 : 1}
+          rows={3}
         />
-        <Zoom in={isExpanded}>
-          <Fab onClick={submitNote}>
-            <AddIcon />
-          </Fab>
-        </Zoom>
       </form>
+    </div>
+    <div className="note-button">
+        <div onClick={submitNote}>
+          <Icon
+            icon="material-symbols:check-small-rounded"
+            style={{ width: "40px", height: "40px" }}
+          />
+        </div>
+      </div>
     </div>
   );
 }

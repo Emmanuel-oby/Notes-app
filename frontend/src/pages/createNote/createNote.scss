@@ -46,3 +46,21 @@
     }
   }
 }
+
+.note-button {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  div {
+    height: 55px;
+    width: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: App.$primary-color;
+    &:hover {
+      background-color: #b489ec;
+    }
+  }
+}

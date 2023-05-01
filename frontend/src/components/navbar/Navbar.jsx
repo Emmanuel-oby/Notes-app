@@ -10,7 +10,7 @@ function Navbar() {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
-  const [isActive, setActive] = useState("false");
+  const [isActive, setActive] = useState(false);
   const wrapperRef = useRef(null);
 
   const ToggleClass = () => {
@@ -73,10 +73,10 @@ function useOutside(ref) {
           <div className="nav-inner">
             {!user ? (
               <>
-                <Link to="/signup" className="icon">
+                <Link to="/signup">
                   <h3>Signup</h3>
                 </Link>
-                <Link to="/login" className="icon">
+                <Link to="/login">
                   <h3>Signin</h3>
                 </Link>
               </>
@@ -111,17 +111,17 @@ function useOutside(ref) {
           ref={wrapperRef}
             className="nav-inner-mobile"
             style={{
-              transform: isActive ? "translateY(60px)" : null,
+              transform: isActive ? "translateY(20px)" : null,
               visibility: isActive ? "visible" : "hidden",
             }}
-            onClick={()=>setActive(!isActive)}
+            onClick={ToggleClass}
           >
             {!user ? (
               <>
-                <Link to="/signup" className="icon">
+                <Link to="/signup" >
                   <h3>Signup</h3>
                 </Link>
-                <Link to="/login" className="icon">
+                <Link to="/login" >
                   <h3>Signin</h3>
                 </Link>
               </>
