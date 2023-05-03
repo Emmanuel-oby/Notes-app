@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./noteCard.scss";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
+import moment from 'moment'
 
 function NoteCard({ border, background, title, content, time, id, onDelete }) {
 
@@ -80,7 +81,7 @@ function NoteCard({ border, background, title, content, time, id, onDelete }) {
         </div>
 
         <p className="content">{content}</p>
-        <p className="time">{time}</p>
+        <p className="time">{moment(time).format('MMMM Do YYYY, h:mm:ss a')}</p>
       </div>
     </div>
   );
